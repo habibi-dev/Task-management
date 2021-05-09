@@ -152,6 +152,17 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            keyAlias ''
+            keyPassword ''
+            storeFile file('key.jks')
+            storePassword ''
+        }
+        buildTypes {
+            release {
+                signingConfig signingConfigs.release
+            }
+        }
     }
     buildTypes {
         debug {
