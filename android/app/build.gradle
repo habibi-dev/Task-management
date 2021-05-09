@@ -131,7 +131,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.taskmanagement"
+        applicationId "com.habibi_dev.taskmanagement"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
