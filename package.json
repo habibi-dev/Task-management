@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-community/masked-view": "^0.1.11",
     "native-base": "^2.15.2",
     "react": "17.0.1",
     "react-native": "0.64.1",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-linear-gradient": "^2.5.6",
     "react-native-reanimated": "^2.1.0",
     "react-native-router-flux": "^4.3.1",
     "react-native-safe-area-context": "^3.2.0",
