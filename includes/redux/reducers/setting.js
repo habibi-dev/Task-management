@@ -1,5 +1,6 @@
 const initialState = {
     loading: false,
+    language: 'fa',
 };
 
 export default (status = initialState, action = {}) => {
