@@ -25,6 +25,7 @@ const style = {
     title: {
         fontFamily: Default.fontFamily,
         fontSize: 16,
+        textAlign: 'right',
         color: '#5e637f',
         paddingLeft: 10,
     },

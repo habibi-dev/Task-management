@@ -7,6 +7,7 @@ import {Actions} from 'react-native-router-flux';
 const style = {
     Input: {
         fontSize: 15,
+        width: 300,
         textAlign: 'right',
         color: '#575757',
         fontFamily: Default.fontFamilyLight,
@@ -36,7 +37,7 @@ export default (props) => {
         <TouchableOpacity style={style.Item} onPress={() => Actions[jump]({onChangeText: onChangeText})}
                           activeOpacity={.9}>
             <Icon name={IconName} type={IconType} style={[style.Icon, styleIcon]}/>
-            <Text style={style.Input}>{placeholder}</Text>
+            <Text style={style.Input} numberOfLines={1}>{placeholder}</Text>
         </TouchableOpacity>
     );
 }

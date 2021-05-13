@@ -19,6 +19,8 @@ const style = {
         Text: {
             fontFamily: Default.fontFamilyLight,
             fontSize: 17,
+            width: 200,
+            textAlign: 'center',
             color: '#5e5e5e',
         },
         title: {
@@ -48,7 +50,7 @@ export default (props) => {
                     </Button>
                 </Right>
                 <Button transparent>
-                    {title ? <Text style={style.Text}>{title}</Text> : (
+                    {title ? <Text style={style.Text} numberOfLines={1}>{title}</Text> : (
                         <Image source={require('../../assets/images/title-logo.png')} style={style.title}
                                resizeMode={'contain'}/>
                     )}
