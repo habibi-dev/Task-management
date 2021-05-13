@@ -42,8 +42,8 @@ const style = {
 export default (props) => {
     const {item} = props;
     return (
-        <Header style={style.header} noShadow>
-            <StatusBar backgroundColor={'#911af6'} barStyle={'light-content'}/>
+        <Header style={[style.header, {backgroundColor: item.color}]} noShadow>
+            <StatusBar backgroundColor={item.color} barStyle={'light-content'}/>
             <ImageBackground source={require('../../assets/images/header-show.png')} style={style.imageBackground}/>
             <Body style={style.body}>
                 <Icon name={'arrow-left'} style={style.icon} type={'Feather'} onPress={() => Actions.pop()}/>

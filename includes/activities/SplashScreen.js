@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Loading} from './Loading';
 import {Actions} from 'react-native-router-flux';
 import {AppState, Platform} from 'react-native';
+import {init} from '../functions/Sqlite';
 
 class SplashScreen extends Component {
 
@@ -14,6 +15,10 @@ class SplashScreen extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+
+        // init sqlite
+        init();
+
         if (Platform.OS === 'android' && AppState._eventHandlers.change.size === 0) {
             AppState.addEventListener('focus', this.handleAppStateChange.bind(this));
         }
@@ -32,7 +37,7 @@ class SplashScreen extends Component {
     }
 
     goToHome() {
-        setTimeout(() => Actions.replace('Home'), 500);
+        setTimeout(() => Actions.replace('drawer'), 500);
     }
 
     handleAppStateChange() {

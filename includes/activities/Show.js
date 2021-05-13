@@ -7,6 +7,10 @@ import HeaderShow from './section/HeaderShow';
 import {Default} from '../config/Stylesheet';
 import Fab from './Elements/Show/Fab';
 import Date from './Elements/Show/Date';
+import {Update} from '../functions/Sqlite';
+import Notification from './section/Notification';
+import {Actions} from 'react-native-router-flux';
+import {SetSetting} from '../redux/actions';
 
 class Show extends Component {
     _isMounted = false;
@@ -32,7 +36,9 @@ class Show extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            loading: false,
+        };
     }
 
     componentDidMount() {
@@ -42,6 +48,31 @@ class Show extends Component {
 
     componentWillUnmount() {
         this._isMounted = false;
+
+    }
+
+    async reloadHome() {
+        await this.props.SetSetting({...this.props.setting, loading: true});
+    }
+
+    Checked() {
+        this.setState({loading: true});
+
+        let newComplete = !(this.props.item.complete === 'true' || this.props.item.complete === true);
+
+        Update('Tasks', `id = ${this.props.item.id}`, {complete: newComplete}).then(
+            res => {
+                if (res.hasOwnProperty('rowsAffected') && res.rowsAffected) {
+                    this.setState({loading: false});
+                    this.reloadHome().then();
+                    Notification(Language.message.Success, 'success');
+                    return Actions.pop();
+                } else {
+                    this.setState({loading: false});
+                    return Notification(Language.message.ErrorSave);
+                }
+            },
+        );
 
     }
 
@@ -57,16 +88,23 @@ class Show extends Component {
                     </View>
                     <Date item={item}/>
                 </Content>
-                <Fab item={item}/>
+                <Fab item={item} loading={this.state.loading} Checked={this.Checked.bind(this)}/>
             </Container>
         );
     }
 }
 
+const DispatchInProps = dispatch => {
+    return {
+        SetSetting: data => {
+            dispatch(SetSetting(data));
+        },
+    };
+};
 const StateToProps = (state) => {
     return {
         setting: state.setting,
     };
 };
 
-export default connect(StateToProps)(Show);
+export default connect(StateToProps, DispatchInProps)(Show);

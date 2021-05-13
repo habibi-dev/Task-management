@@ -58,3 +58,4 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 key/key.jks
+android/java_pid28093.hprof
