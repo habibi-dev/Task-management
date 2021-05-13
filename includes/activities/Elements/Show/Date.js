@@ -70,8 +70,7 @@ export default (props) => {
             </View>
             <View style={[style.view2]}>
                 <View style={[style.bg, {backgroundColor: item.color}]}/>
-                <Icon name={'calendar'} type={'Feather'} style={{color: item.color}}
-                      onPress={() => Actions.jump('DatePicker')}/>
+                <Icon name={'calendar'} type={'Feather'} style={{color: item.color}}/>
             </View>
         </View>
     );
