@@ -24,9 +24,9 @@ const style = {
 
 
 export default (props) => {
-    const {title = '', StatusBarColor = '#fff'} = props;
+    const {title = '', StatusBarColor = '#fff', noShadow = true} = props;
     return (
-        <Header style={[style.header, props.hasOwnProperty('style') ? props.style : {}]} noShadow>
+        <Header style={[style.header, props.hasOwnProperty('style') ? props.style : {}]} noShadow={noShadow}>
             <StatusBar backgroundColor={StatusBarColor} barStyle={'dark-content'}/>
             <Icon name={'arrow-right'} style={style.icon} type={'Feather'} onPress={() => Actions.pop()}/>
             <Text style={style.title}>{title}</Text>
