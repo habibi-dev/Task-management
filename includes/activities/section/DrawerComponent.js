@@ -82,7 +82,7 @@ export default () => {
                 <View>
                     {groups.length ? groups.map((item, index) => (
                         <TouchableOpacity style={[style.Content.TouchableOpacity]} onPress={() => {
-                            Actions.GroupTask({item});
+                            Actions.push('GroupTask', {item});
                         }} key={index} activeOpacity={1}>
                             <ImageBackground resizeMode={'cover'}
                                              style={[style.Content.ImageBackground, {backgroundColor: item.color}]}
