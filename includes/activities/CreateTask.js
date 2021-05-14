@@ -134,11 +134,6 @@ class CreateTask extends Component {
             }
         }
 
-        if (!group.id) {
-            Notification(message.requiredField.replace('%s', Language.group.title), 'danger', 3000, 'bottom');
-            return false;
-        }
-
         return true;
     }
 
@@ -157,7 +152,7 @@ class CreateTask extends Component {
 
         if (create) {
             const res = await Insert('Tasks', {
-                title, description, ex_date: date.en, group_id: group.id, complete: 0,
+                title, description, ex_date: date.en, group_id: this.props.group_id, complete: 0,
             });
 
             // End Loading
@@ -273,13 +268,15 @@ class CreateTask extends Component {
                                     IconName={'calendar'} IconType={'Feather'}
                                     jump={'DatePicker'}/>
                         </View>
-                        <View>
-                            <Picker placeholder={group.name.length ? group.name : Language.group.title}
-                                    onChangeText={this.onChange.bind(this)}
-                                    styleIcon={group.color.length ? {color: group.color} : {}}
-                                    IconName={'folder-o'} IconType={'FontAwesome'}
-                                    jump={'GroupPicker'}/>
-                        </View>
+                        {this.props.hasOwnProperty('item') ? (
+                            <View>
+                                <Picker placeholder={group.name.length ? group.name : Language.group.title}
+                                        onChangeText={this.onChange.bind(this)}
+                                        styleIcon={group.color.length ? {color: group.color} : {}}
+                                        IconName={'folder-o'} IconType={'FontAwesome'}
+                                        jump={'GroupPicker'}/>
+                            </View>
+                        ) : null}
 
                     </Form>
                     {this.removeElement()}
