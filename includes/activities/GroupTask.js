@@ -43,11 +43,14 @@ class GroupTask extends Component {
         this._isMounted = true;
 
         this.getData();
+
+        BackHandler.addEventListener('hardwareBackPress', this.GoToHome.bind(this));
     }
 
     componentWillUnmount() {
         this._isMounted = false;
 
+        BackHandler.removeEventListener('hardwareBackPress', this.GoToHome.bind(this));
     }
 
     async componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
@@ -57,6 +60,21 @@ class GroupTask extends Component {
 
             this.getData();
         }
+    }
+
+    GoToHome() {
+        if (!this._isMounted) {
+            return null;
+        }
+
+        if (!this.props.navigation.isFocused()) {
+            return false;
+        }
+
+        Actions.replace('Home');
+
+        return true;
+
     }
 
     getData() {
@@ -120,7 +138,7 @@ class GroupTask extends Component {
                 <Fab
                     style={this.style.Fab.btn}
                     position="bottomRight"
-                    onPress={() => Actions.jump('CreateTask')}>
+                    onPress={() => Actions.push('CreateTask')}>
                     <Icon name={'plus'} type={'Entypo'} style={this.style.Fab.icon}/>
                 </Fab>
             </Container>
