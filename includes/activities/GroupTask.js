@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 import {Container, Fab, Icon} from 'native-base';
 import {BackHandler, FlatList, StatusBar, View} from 'react-native';
 import Header from './section/Header';
-import Language from '../config/Language';
-import Notification from './section/Notification';
 import Item from './Elements/List/Item';
 import {Actions} from 'react-native-router-flux';
 import SQLite from 'react-native-sqlite-storage';
@@ -97,11 +95,7 @@ class GroupTask extends Component {
 
         this.setState({Tasks});
 
-        Update('Tasks', `id = ${Tasks[index].id}`, {complete: newComplete}).then(
-            r => {
-                console.log(r);
-            },
-        );
+        Update('Tasks', `id = ${Tasks[index].id}`, {complete: newComplete}).then();
 
     }
 
@@ -116,6 +110,7 @@ class GroupTask extends Component {
             <Container style={this.style.Container}>
                 <StatusBar backgroundColor={'#f9faff'} barStyle={'dark-content'}/>
                 <Header title={this.props.item.name}
+                        back={true}
                         leftIconName="edit" leftIconType="FontAwesome"
                         leftIconOnPress={() => Actions.CreateGroup({
                             item: this.props.item,
