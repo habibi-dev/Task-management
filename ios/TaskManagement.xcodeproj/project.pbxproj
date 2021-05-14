@@ -36,6 +36,7 @@
 		D0A7B18D1B314941BC884F7B /* Shabnam-Light-FD.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1459CDBA9D734748A6C7FC92 /* Shabnam-Light-FD.ttf */; };
 		21093A8AC54F468CB53B0FE8 /* Shabnam-Medium-FD.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4C1CFE7BF5C441D9E77D9BD /* Shabnam-Medium-FD.ttf */; };
 		047473B05A594AF797DF6B78 /* Shabnam-Thin-FD.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1F3C0C83BE04C22A2105213 /* Shabnam-Thin-FD.ttf */; };
+		BAE2B7BE5DDC4B7BA1EF4C68 /* libRNBackgroundJob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CBD6D0B499549A4ADD6B474 /* libRNBackgroundJob.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		1459CDBA9D734748A6C7FC92 /* Shabnam-Light-FD.ttf */ = {isa = PBXFileReference; name = "Shabnam-Light-FD.ttf"; path = "../includes/assets/fonts/Shabnam-Light-FD.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		D4C1CFE7BF5C441D9E77D9BD /* Shabnam-Medium-FD.ttf */ = {isa = PBXFileReference; name = "Shabnam-Medium-FD.ttf"; path = "../includes/assets/fonts/Shabnam-Medium-FD.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		E1F3C0C83BE04C22A2105213 /* Shabnam-Thin-FD.ttf */ = {isa = PBXFileReference; name = "Shabnam-Thin-FD.ttf"; path = "../includes/assets/fonts/Shabnam-Thin-FD.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		98CE5C37EBF44809A7D77877 /* RNBackgroundJob.xcodeproj */ = {isa = PBXFileReference; name = "RNBackgroundJob.xcodeproj"; path = "../node_modules/react-native-background-job/ios/RNBackgroundJob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		1CBD6D0B499549A4ADD6B474 /* libRNBackgroundJob.a */ = {isa = PBXFileReference; name = "libRNBackgroundJob.a"; path = "libRNBackgroundJob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAE2B7BE5DDC4B7BA1EF4C68 /* libRNBackgroundJob.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +149,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				98CE5C37EBF44809A7D77877 /* RNBackgroundJob.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -412,6 +417,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaskManagement.app/TaskManagement";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
+				);
 			};
 			name = Debug;
 		};
@@ -435,6 +448,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaskManagement.app/TaskManagement";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
+				);
 			};
 			name = Release;
 		};
@@ -460,6 +481,10 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
+				);
 			};
 			name = Debug;
 		};
@@ -483,6 +508,10 @@
 				PRODUCT_NAME = TaskManagement;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
+				);
 			};
 			name = Release;
 		};
