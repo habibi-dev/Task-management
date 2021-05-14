@@ -136,7 +136,6 @@ class Home extends Component {
     };
 
     render() {
-        const background = require('../assets/images/header-show.png');
 
         return (
             <Container style={this.style.Container}>
