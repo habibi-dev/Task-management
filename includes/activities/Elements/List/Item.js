@@ -64,7 +64,6 @@ export default (item, index, Checked) => {
         checked = (complete === 'true' || complete === true);
 
     let ElChecked = null;
-    console.log(checked);
     if (checked) {
         ElChecked = (
             <TouchableOpacity activeOpacity={.8} style={style.ElChecked} onPress={() => Checked(index)}>
