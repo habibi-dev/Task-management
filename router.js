@@ -1,4 +1,4 @@
-import {Drawer, Lightbox, Router, Scene, Stack} from 'react-native-router-flux';
+import {Drawer, Router, Scene, Stack} from 'react-native-router-flux';
 import {connect, Provider} from 'react-redux';
 import store from './includes/redux/store';
 import React from 'react';
@@ -22,15 +22,15 @@ export default () => {
         <Root>
             <Provider store={store}>
                 <RouterWithRedux>
-                    <Scene hideNavBar key={'root'}>
+                    <Scene hideNavBar key={'root'} animationEnabled={false}>
                         <Scene key="SplashScreen" component={SplashScreen} initial/>
                         <Drawer key="drawer" drawerPosition={'right'} contentComponent={DrawerComponent}>
                             <Stack key="drawer" hideNavBar duration={0}>
-                                <Scene key="Home" component={Home}/>
-                                <Scene key="GroupTask" component={GroupTask}/>
+                                <Scene key="Home" component={Home} animationEnabled={false}/>
                             </Stack>
                         </Drawer>
-                        <Scene key="Show" component={Show} animationEnabled={false}/>
+                        <Scene key="GroupTask" component={GroupTask}/>
+                        <Scene key="Show" component={Show} />
                         <Scene key="CreateTask" component={CreateTask}/>
                         <Scene key="CreateGroup" component={CreateGroup}/>
                         <Scene key="ColorPicker" component={ColorPicker}/>
