@@ -17,7 +17,7 @@ export default (props) => {
             <Button style={{backgroundColor: '#666666'}} onPress={() => Checked()}>
                 <Icon name="check" type={'Feather'}/>
             </Button>
-            <Button onPress={() => Actions.jump('CreateTask', {
+            <Button onPress={() => Actions.push('CreateTask', {
                 item: {
                     id: item.id,
                     title: item.title,
