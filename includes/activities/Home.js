@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Container, Fab, Icon} from 'native-base';
+import {Button, Container, Fab, Icon} from 'native-base';
 import {BackHandler, FlatList, StatusBar, Text, View} from 'react-native';
 import Header from './section/Header';
 import Language from '../config/Language';
@@ -11,6 +11,7 @@ import SQLite from 'react-native-sqlite-storage';
 import {Select, Update} from '../functions/Sqlite';
 import {SetSetting} from '../redux/actions';
 import {Default} from '../config/Stylesheet';
+import ItemGroup from './Groups/ItemGroup';
 
 class Home extends Component {
     _isMounted = false;
@@ -27,10 +28,20 @@ class Home extends Component {
                 color: '#ffffff',
             },
         },
-        noItem: {
+        noGroups: {
+            btn: {
+                width: '100%',
+                marginTop: 15,
+                backgroundColor: '#1f79ff',
+            },
             text: {
                 fontFamily: Default.fontFamilyLight,
                 color: '#474747',
+                fontSize: 14,
+            },
+            textBtn: {
+                fontFamily: Default.fontFamilyLight,
+                color: '#fff',
                 fontSize: 14,
             },
             view: {
@@ -43,10 +54,9 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
-        SQLite.DEBUG = true;
         this.state = {
             refreshing: false,
-            Tasks: [],
+            Group: [],
             countBack: Date.now(),
         };
     }
@@ -77,11 +87,7 @@ class Home extends Component {
     getData() {
         this.setState({refreshing: true});
 
-        Select('Tasks', 'Tasks.id as id,title,description,ex_date as date ,group_id,complete,color,name as group_name',
-            '', 'ORDER BY id DESC'
-            , 'LEFT JOIN Groups on Groups.id = group_id').then(r => {
-            this.setState({Tasks: r, refreshing: false});
-        });
+        Select('Groups').then(r => this.setState({Group: r, refreshing: false}));
     }
 
     Exit() {
@@ -125,38 +131,44 @@ class Home extends Component {
 
     }
 
-    noItem = () => {
+    noGroups = () => {
         return (
-            <View style={this.style.noItem.view}>
-                <Text style={this.style.noItem.text}>{Language.message.noItem}</Text>
+            <View style={this.style.noGroups.view}>
+                <Text style={this.style.noGroups.text}>{Language.message.noGroups}</Text>
             </View>
         );
     };
 
     render() {
+        const background = require('../assets/images/header-show.png');
 
         return (
             <Container style={this.style.Container}>
                 <StatusBar backgroundColor={'#f9faff'} barStyle={'dark-content'}/>
                 <Header/>
                 <FlatList
-                    data={this.state.Tasks}
+                    data={this.state.Group}
                     removeClippedSubviews={true}
                     refreshing={this.state.refreshing}
                     onRefresh={this.getData.bind(this)}
-                    ListEmptyComponent={this.noItem.bind(this)}
+                    ListEmptyComponent={this.noGroups.bind(this)}
                     ListFooterComponent={<View style={{marginTop: 85}}/>}
-                    style={{flex: 1, padding: 15, marginTop: 0, marginBottom: 5}}
-                    numColumns={1}
+                    style={{
+                        flex: 1,
+                        padding: 15,
+                        marginTop: 0,
+                        marginBottom: 5,
+                    }}
+                    numColumns={2}
                     onEndReachedThreshold={0.8}
                     key={'h'}
                     keyExtractor={(item, index) => index.toString()}
-                    renderItem={({item, index}) => (Item(item, index, this.Checked.bind(this)))}
+                    renderItem={({item, index}) => (ItemGroup(item, index))}
                 />
                 <Fab
                     style={this.style.Fab.btn}
                     position="bottomRight"
-                    onPress={() => Actions.jump('CreateTask')}>
+                    onPress={() => Actions.CreateGroup()}>
                     <Icon name={'plus'} type={'Entypo'} style={this.style.Fab.icon}/>
                 </Fab>
             </Container>
