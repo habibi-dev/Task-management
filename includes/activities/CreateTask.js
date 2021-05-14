@@ -208,7 +208,6 @@ class CreateTask extends Component {
                     this.setState({loading: true});
 
                     Delete('Tasks', id).then(r => {
-                        console.log(r);
                         if (r.hasOwnProperty('rowsAffected') && r.rowsAffected) {
                             // End Loading
                             this.setState({loading: false});
