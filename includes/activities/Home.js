@@ -123,11 +123,7 @@ class Home extends Component {
 
         this.setState({Tasks});
 
-        Update('Tasks', `id = ${Tasks[index].id}`, {complete: newComplete}).then(
-            r => {
-                console.log(r);
-            },
-        );
+        Update('Tasks', `id = ${Tasks[index].id}`, {complete: newComplete}).then();
 
     }
 
