@@ -170,7 +170,7 @@ class CreateGroup extends Component {
                 Notification(message.Success, 'success');
 
                 if (this.props.hasOwnProperty('isBackArchive')) {
-                    this.props.ChangeName(name);
+                    this.props.ChangeNameAndColor(name, color);
                     return Actions.pop();
                 }
 
