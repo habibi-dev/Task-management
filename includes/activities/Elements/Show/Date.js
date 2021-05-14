@@ -2,7 +2,6 @@ import {Text, View} from 'react-native';
 import {Icon} from 'native-base';
 import React from 'react';
 import {Default} from '../../../config/Stylesheet';
-import {Actions} from 'react-native-router-flux';
 import moment from 'moment-jalaali';
 import fa from 'moment/src/locale/fa';
 
