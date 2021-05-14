@@ -14,6 +14,4 @@
 <img src="https://raw.githubusercontent.com/habibi-dev/Task-management/main/screenshot/ScreenShot-4.png" width="200" />
 <img src="https://raw.githubusercontent.com/habibi-dev/Task-management/main/screenshot/ScreenShot-5.png" width="200" />
 <img src="https://raw.githubusercontent.com/habibi-dev/Task-management/main/screenshot/ScreenShot-6.png" width="200" />
-<img src="https://raw.githubusercontent.com/habibi-dev/Task-management/main/screenshot/ScreenShot-7.png" width="200" />
-<img src="https://raw.githubusercontent.com/habibi-dev/Task-management/main/screenshot/ScreenShot-8.png" width="200" />
 </div>
