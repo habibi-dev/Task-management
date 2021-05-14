@@ -1,4 +1,4 @@
-package com.taskmanagement;
+package com.habibi_dev.taskmanagement;
 
 import com.facebook.react.ReactActivity;
 
