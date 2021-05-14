@@ -105,8 +105,9 @@ class GroupTask extends Component {
 
     }
 
-    ChangeName(newName) {
+    ChangeNameAndColor(newName, newColor) {
         this.props.item.name = newName;
+        this.props.item.color = newColor;
     }
 
     render() {
@@ -119,7 +120,7 @@ class GroupTask extends Component {
                         leftIconOnPress={() => Actions.CreateGroup({
                             item: this.props.item,
                             isBackArchive: true,
-                            ChangeName: this.ChangeName.bind(this),
+                            ChangeNameAndColor: this.ChangeNameAndColor.bind(this),
                         })}/>
                 <FlatList
                     data={this.state.Tasks}
@@ -136,9 +137,11 @@ class GroupTask extends Component {
                     renderItem={({item, index}) => (Item(item, index, this.Checked.bind(this)))}
                 />
                 <Fab
-                    style={this.style.Fab.btn}
+                    style={[this.style.Fab.btn, {backgroundColor: this.props.item.color}]}
                     position="bottomRight"
-                    onPress={() => Actions.push('CreateTask')}>
+                    onPress={() => Actions.push('CreateTask', {
+                        group_id: this.props.item.id,
+                    })}>
                     <Icon name={'plus'} type={'Entypo'} style={this.style.Fab.icon}/>
                 </Fab>
             </Container>
