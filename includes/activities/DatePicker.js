@@ -37,6 +37,14 @@ const style = {
             color: '#ffffff',
         },
     },
+    ComingSoon: {
+        fontFamily: Default.fontFamily,
+        fontSize: 12,
+        color: '#898989',
+        marginTop: 15,
+        width: '100%',
+        textAlign: 'center',
+    },
 };
 
 export default (props) => {
@@ -67,6 +75,8 @@ export default (props) => {
                         onTimeChange={setTime}
                     />
                 </View>
+                <Text style={style.ComingSoon}>{Language.message.ComingSoonNotification}</Text>
+
             </Content>
             <Footer style={style.Footer.main}>
                 <Button style={style.Footer.btn} onPress={() => {
