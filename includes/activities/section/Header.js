@@ -38,16 +38,23 @@ const style = {
 export default (props) => {
     const {
         title, leftIconName = 'settings', leftIconType = 'SimpleLineIcons',
-        leftIconOnPress = setting,
+        leftIconOnPress = setting, back = false,
     } = props;
     return (
         <Header style={style.header} noShadow>
             <StatusBar backgroundColor={'#f9faff'} barStyle={'dark-content'}/>
             <Body style={style.body}>
                 <Right>
-                    <Button transparent onPress={() => Actions.drawerOpen()}>
-                        <Icon name={'menu'} style={style.icon} type={'SimpleLineIcons'}/>
-                    </Button>
+                    {back ? (
+                            <Button transparent onPress={() => Actions.pop()}>
+                                <Icon name={'arrow-right'} style={style.icon} type={'Feather'}/>
+                            </Button>
+                        ) :
+                        (
+                            <Button transparent onPress={() => Actions.drawerOpen()}>
+                                <Icon name={'menu'} style={style.icon} type={'SimpleLineIcons'}/>
+                            </Button>
+                        )}
                 </Right>
                 <Button transparent>
                     {title ? <Text style={style.Text} numberOfLines={1}>{title}</Text> : (
