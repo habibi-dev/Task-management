@@ -65,7 +65,7 @@ const noGroups = () => {
     return (
         <View style={style.noGroups.view}>
             <Text style={style.noGroups.text}>{Language.message.noGroups}</Text>
-            <Button style={style.noGroups.btn} onPress={() => Actions.jump('CreateGroup')} transparent full>
+            <Button style={style.noGroups.btn} onPress={() => Actions.push('CreateGroup')} transparent full>
                 <Text style={style.noGroups.textBtn}>{Language.group.create}</Text>
             </Button>
         </View>
