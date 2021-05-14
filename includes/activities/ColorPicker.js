@@ -1,7 +1,9 @@
 import React from 'react';
-import {ImageBackground, Text, TouchableOpacity, View} from 'react-native';
-import LightBox from './LightBox';
+import {ImageBackground, TouchableOpacity, View} from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import {Container, Content} from 'native-base';
+import HeaderBack from './section/HeaderBack';
+import Language from '../config/Language';
 
 const style = {
     TouchableOpacity: {
@@ -30,19 +32,22 @@ export default (props) => {
     const background = require('../assets/images/header-show.png');
 
     return (
-        <LightBox>
-            <View style={{flexDirection: 'row-reverse', flexWrap: 'wrap', justifyContent: 'center'}}>
-                {colors.map((item, index) => (
-                    <TouchableOpacity style={[style.TouchableOpacity]} onPress={() => {
-                        onChangeText('color', item);
-                        Actions.pop();
-                    }} key={index} activeOpacity={1}>
-                        <ImageBackground style={[style.ImageBackground, {backgroundColor: item}]}
-                                         source={background}>
-                        </ImageBackground>
-                    </TouchableOpacity>
-                ))}
-            </View>
-        </LightBox>
+        <Container>
+            <HeaderBack title={Language.group.colorTemplate}/>
+            <Content>
+                <View style={{flexDirection: 'row-reverse', flexWrap: 'wrap', justifyContent: 'center'}}>
+                    {colors.map((item, index) => (
+                        <TouchableOpacity style={[style.TouchableOpacity]} onPress={() => {
+                            onChangeText('color', item);
+                            Actions.pop();
+                        }} key={index} activeOpacity={1}>
+                            <ImageBackground style={[style.ImageBackground, {backgroundColor: item}]}
+                                             source={background}>
+                            </ImageBackground>
+                        </TouchableOpacity>
+                    ))}
+                </View>
+            </Content>
+        </Container>
     );
 }

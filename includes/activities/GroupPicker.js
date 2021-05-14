@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {Default} from '../config/Stylesheet';
 import {ImageBackground, Text, TouchableOpacity, View} from 'react-native';
-import LightBox from './LightBox';
 import {Actions} from 'react-native-router-flux';
 import {Select} from '../functions/Sqlite';
 import Language from '../config/Language';
-import {Button} from 'native-base';
+import {Button, Container, Content} from 'native-base';
+import HeaderBack from './section/HeaderBack';
 
 const style = {
     Text: {
@@ -85,20 +85,23 @@ export default (props) => {
     const background = require('../assets/images/header-show.png');
 
     return (
-        <LightBox>
-            <View style={{flexDirection: 'row-reverse', flexWrap: 'wrap', justifyContent: 'center'}}>
-                {groups.length ? groups.map((item, index) => (
-                    <TouchableOpacity style={[style.TouchableOpacity]} onPress={() => {
-                        onChangeText('group', item);
-                        Actions.pop();
-                    }} key={index} activeOpacity={1}>
-                        <ImageBackground style={[style.ImageBackground, {backgroundColor: item.color}]}
-                                         source={background}>
-                            <Text style={style.Text} numberOfLines={1}>{item.name}</Text>
-                        </ImageBackground>
-                    </TouchableOpacity>
-                )) : noGroups()}
-            </View>
-        </LightBox>
+        <Container>
+            <HeaderBack title={Language.group.title}/>
+            <Content style={style.Content}>
+                <View style={{flexDirection: 'row-reverse', flexWrap: 'wrap', justifyContent: 'center'}}>
+                    {groups.length ? groups.map((item, index) => (
+                        <TouchableOpacity style={[style.TouchableOpacity]} onPress={() => {
+                            onChangeText('group', item);
+                            Actions.pop();
+                        }} key={index} activeOpacity={1}>
+                            <ImageBackground style={[style.ImageBackground, {backgroundColor: item.color}]}
+                                             source={background}>
+                                <Text style={style.Text} numberOfLines={1}>{item.name}</Text>
+                            </ImageBackground>
+                        </TouchableOpacity>
+                    )) : noGroups()}
+                </View>
+            </Content>
+        </Container>
     );
 }

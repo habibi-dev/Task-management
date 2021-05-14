@@ -1,18 +1,35 @@
 import React, {useState} from 'react';
 import DatePicker, {getFormatedDate} from 'react-native-modern-datepicker';
 import {Default} from '../config/Stylesheet';
-import {Button} from 'native-base';
+import {Button, Container, Content, Footer} from 'native-base';
 import Language from '../config/Language';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 import moment from 'moment-jalaali';
-import LightBox from './LightBox';
 import {Actions} from 'react-native-router-flux';
 import Notification from './section/Notification';
+import HeaderBack from './section/HeaderBack';
 
 const style = {
-    Btn: {
+    DatePicker: {
+        elevation: 2,
+        backgroundColor: '#fff',
+        paddingRight: 5,
+        borderRadius: 5,
+        margin: 5,
+        overflow: 'hidden',
+    },
+    Content: {
+        padding: 5,
+        backgroundColor: '#f9faff',
+    },
+    Footer: {
         main: {
             backgroundColor: '#1f79ff',
+            justifyContent: 'center',
+        },
+        btn: {
+            height: '100%',
+            flex: 1,
         },
         text: {
             fontFamily: Default.fontFamily,
@@ -27,39 +44,46 @@ export default (props) => {
     const [date, setDate] = useState(), [time, setTime] = useState('00:00');
 
     return (
-        <LightBox>
-            <DatePicker
-                isGregorian={false}
-                current={getFormatedDate(new Date(), 'jYYYY/jMM/jDD')}
-                minimumDate={getFormatedDate(new Date(), 'jYYYY/jMM/jDD')}
-                options={{
-                    backgroundColor: '#ffffff',
-                    textHeaderColor: '#666666',
-                    textDefaultColor: '#363636',
-                    selectedTextColor: '#fff',
-                    mainColor: '#1f79ff',
-                    textSecondaryColor: '#666666',
-                    defaultFont: Default.fontFamilyLight,
-                    headerFont: Default.fontFamily,
-                }}
-                dateFormat={'YYYY/MM/DD'}
-                style={style.DatePicker}
-                onDateChange={setDate}
-                onTimeChange={setTime}
-            />
-            <Button style={style.Btn.main} onPress={() => {
-                if (!date) {
-                    return Notification(Language.message.SelectDate, 'danger');
-                }
-                onChangeText('date', {
-                    fa: `${date} ${time}`,
-                    en: moment(`${date} ${time}`, 'jYYYY/jMM/jDD HH:mm').format('YYYY-MM-DD HH:mm'),
-                });
+        <Container>
+            <HeaderBack title={Language.datePicker.title}/>
+            <Content style={style.Content}>
+                <View style={style.DatePicker}>
+                    <DatePicker
+                        isGregorian={false}
+                        current={getFormatedDate(new Date(), 'jYYYY/jMM/jDD')}
+                        minimumDate={getFormatedDate(new Date(), 'jYYYY/jMM/jDD')}
+                        options={{
+                            backgroundColor: '#ffffff',
+                            textHeaderColor: '#666666',
+                            textDefaultColor: '#363636',
+                            selectedTextColor: '#fff',
+                            mainColor: '#1f79ff',
+                            textSecondaryColor: '#666666',
+                            defaultFont: Default.fontFamilyLight,
+                            headerFont: Default.fontFamily,
+                        }}
+                        dateFormat={'YYYY/MM/DD'}
+                        onDateChange={setDate}
+                        onTimeChange={setTime}
+                    />
+                </View>
+            </Content>
+            <Footer style={style.Footer.main}>
+                <Button style={style.Footer.btn} onPress={() => {
+                    if (!date) {
+                        return Notification(Language.message.SelectDate, 'danger');
+                    }
+                    onChangeText('date', {
+                        fa: `${date} ${time}`,
+                        en: moment(`${date} ${time}`, 'jYYYY/jMM/jDD HH:mm').format('YYYY-MM-DD HH:mm'),
+                    });
 
-                Actions.pop();
-            }} transparent full>
-                <Text style={style.Btn.text}>{Language.datePicker.title}</Text>
-            </Button>
-        </LightBox>
+                    Actions.pop();
+                }} transparent full>
+                    <Text style={style.Footer.text}>{Language.datePicker.title}</Text>
+                </Button>
+            </Footer>
+        </Container>
+
     );
 }
