@@ -2,7 +2,6 @@ import React from 'react';
 import {StatusBar, Text, View} from 'react-native';
 import {Spinner} from 'native-base';
 import {Default} from '../config/Stylesheet';
-import Language from '../config/Language';
 
 const Style = {
     Loading: {

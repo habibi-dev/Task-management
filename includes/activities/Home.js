@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, Container, Fab, Icon} from 'native-base';
+import {Container, Fab, Icon} from 'native-base';
 import {BackHandler, FlatList, StatusBar, Text, View} from 'react-native';
 import Header from './section/Header';
 import Language from '../config/Language';
 import Notification from './section/Notification';
-import Item from './Elements/List/Item';
 import {Actions} from 'react-native-router-flux';
-import SQLite from 'react-native-sqlite-storage';
 import {Select, Update} from '../functions/Sqlite';
 import {SetSetting} from '../redux/actions';
 import {Default} from '../config/Stylesheet';
@@ -65,6 +63,10 @@ class Home extends Component {
         this._isMounted = true;
 
         this.getData();
+
+        if (global.hasOwnProperty('itemShow')) {
+            Actions.push('Show', {item: global.itemShow});
+        }
 
         BackHandler.addEventListener('hardwareBackPress', this.Exit.bind(this));
     }

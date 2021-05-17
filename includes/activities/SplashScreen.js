@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Loading} from './Loading';
 import {Actions} from 'react-native-router-flux';
-import {AppState, Platform, TouchableOpacity} from 'react-native';
+import {AppState, Platform} from 'react-native';
 import {CreateIndex, CreateTable, DropTable, init, InsertFromAnotherTable, RenameTable} from '../functions/Sqlite';
 import BackgroundFetch from 'react-native-background-fetch';
 import ServiceTaskChecker from '../service/ServiceTaskChecker';

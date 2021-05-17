@@ -1,4 +1,4 @@
-import {Text, TouchableHighlight, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {CheckBox} from 'native-base';
 import React from 'react';
 import {Default} from '../../../config/Stylesheet';

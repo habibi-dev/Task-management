@@ -152,7 +152,7 @@ class CreateTask extends Component {
 
         if (create) {
             const res = await Insert('Tasks', {
-                title, description, ex_date: date.en, group_id: this.props.group_id, complete: 0,
+                title, description, ex_date: date.en, group_id: this.props.group_id, complete: 0, notification: 0,
             });
 
             // End Loading
@@ -171,7 +171,7 @@ class CreateTask extends Component {
         } else {
             // Edit
             const res = await Update('Tasks', `id = ${id}`, {
-                title, description, ex_date: date.en, group_id: group.id, complete: 0,
+                title, description, ex_date: date.en, group_id: group.id, complete: 0, notification: 0,
             });
 
             this.setState({loading: false});
