@@ -1,7 +1,6 @@
 import React from 'react';
 import {Default} from '../../config/Stylesheet';
 import {ImageBackground, Text, TouchableOpacity, View} from 'react-native';
-import LightBox from '../LightBox';
 import {Actions} from 'react-native-router-flux';
 
 const style = {
