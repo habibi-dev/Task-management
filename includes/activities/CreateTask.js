@@ -119,7 +119,7 @@ class CreateTask extends Component {
     }
 
     validate() {
-        const {title, date, group} = this.state;
+        const {title, date} = this.state;
         const {message, form} = Language;
 
         if (!title.length) {
