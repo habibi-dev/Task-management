@@ -5,6 +5,7 @@ export const init = () => {
 
     SQLite.openDatabase({name: 'database', createFromLocation: '~database.db'}).then((DB) => {
         global.db = DB;
+        console.log('Database init');
     }).catch((error) => {
         console.log(error);
     });
@@ -21,13 +22,14 @@ const ExecuteQuery = (sql, params = []) => new Promise((resolve, reject) => {
     });
 });
 
-export const Select = async (TableName, Select = '*', Where = '', Order = '', join = '') => {
+export const Select = async (TableName, Select = '*', Where = '', Order = '', join = '', single = false) => {
 
     Where = Where.length ? `where ${Where}` : '';
 
     return await ExecuteQuery(`SELECT ${Select}
                                FROM ${TableName} ${join} ${Where} ${Order}`, []).then((selectQuery) => {
-        return selectQuery.rows.raw();
+        const rows = selectQuery.rows.raw();
+        return rows.length && single ? rows[0] : rows;
     });
 };
 
@@ -72,12 +74,16 @@ export const RenameTable = async (oldTable, newTable) => {
 };
 
 export const TableExist = async (TableName) => {
-    return await ExecuteQuery(`PRAGMA table_info(${TableName})`, []).then((selectQuery) => {
+    return await ExecuteQuery(`PRAGMA table_info('${TableName}')`, []).then((selectQuery) => {
         return !!selectQuery.rows.length;
     });
 };
 
 export const CreateTable = async (TableName, Data = {}, primary = '"id" AUTOINCREMENT') => {
+
+    if (await TableExist(TableName)) {
+        return false;
+    }
 
     const keys = Object.keys(Data);
     let query = '';
@@ -130,3 +136,6 @@ export const InsertFromAnotherTable = async (From, To, fields = {from_field: 'to
     });
 };
 
+export const GetItem = async (TableName, value, by = 'id') => {
+    return await Select(TableName, '*', `${by} = '${value}'`, '', '', true);
+};
