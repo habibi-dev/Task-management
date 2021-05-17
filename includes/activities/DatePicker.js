@@ -85,7 +85,7 @@ export default (props) => {
                     }
                     onChangeText('date', {
                         fa: `${date} ${time}`,
-                        en: moment(`${date} ${time}`, 'jYYYY/jMM/jDD HH:mm').format('YYYY-MM-DD HH:mm'),
+                        en: parseInt(moment(`${date} ${time}`, 'jYYYY/jMM/jDD HH:mm').format('X')),
                     });
 
                     Actions.pop();
