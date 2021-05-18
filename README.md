@@ -1,5 +1,6 @@
 # Task management
 Task management application is a very simple and practical software to organize your work
+
 Technologies: React | React Native
 
 ## Screenshots:
