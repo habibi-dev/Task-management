@@ -1,6 +1,5 @@
 import PushNotification from 'react-native-push-notification';
 import {Actions} from 'react-native-router-flux';
-import {AppState} from 'react-native';
 
 // Must be outside of any component LifeCycle (such as `componentDidMount`).
 PushNotification.configure({
@@ -12,10 +11,11 @@ PushNotification.configure({
     // (required) Called when a remote is received or opened, or local notification is opened
     onNotification: function (notification) {
         if (notification.data.hasOwnProperty('title')) {
-            if (AppState.currentState === 'active') {
-                Actions.push('Show', {item: notification.data});
-            } else {
+            const routs = ['Home', 'GroupTask', 'Show', 'CreateTask', 'CreateGroup', 'ColorPicker', 'GroupPicker', 'DatePicker'];
+            if (!routs.includes(Actions.currentScene)) {
                 global.itemShow = notification.data;
+            } else {
+                Actions.push('Show', {item: notification.data});
             }
         } else {
             console.log('NOTIFICATION:', notification);
