@@ -5,7 +5,6 @@ import {Actions} from 'react-native-router-flux';
 import Notification from './Notification';
 import Language from '../../config/Language';
 import {Default} from '../../config/Stylesheet';
-import ServiceTaskChecker from '../../service/ServiceTaskChecker';
 
 const style = {
         header: {
@@ -57,7 +56,7 @@ export default (props) => {
                             </Button>
                         )}
                 </Right>
-                <Button transparent onPress={()=>ServiceTaskChecker()}>
+                <Button transparent>
                     {title ? <Text style={style.Text} numberOfLines={1}>{title}</Text> : (
                         <Image source={require('../../assets/images/title-logo.png')} style={style.title}
                                resizeMode={'contain'}/>
