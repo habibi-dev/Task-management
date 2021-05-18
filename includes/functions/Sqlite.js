@@ -1,8 +1,6 @@
 import SQLite from 'react-native-sqlite-storage';
 
 export const init = () => {
-    SQLite.enablePromise(true);
-
     SQLite.openDatabase({name: 'database', createFromLocation: '~database.db'}).then((DB) => {
         global.db = DB;
         console.log('Database init');
