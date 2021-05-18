@@ -75,7 +75,6 @@ export default (props) => {
                         onTimeChange={setTime}
                     />
                 </View>
-                <Text style={style.ComingSoon}>{Language.message.ComingSoonNotification}</Text>
 
             </Content>
             <Footer style={style.Footer.main}>
