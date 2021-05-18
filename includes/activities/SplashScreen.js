@@ -42,7 +42,7 @@ class SplashScreen extends Component {
     async DBUpdate() {
         const Database = new UpdateDatabase();
 
-        const v3 = async () => {
+        const v4 = async () => {
             this.setState({updating: Language.message.Updating});
 
             // Create new
@@ -90,7 +90,7 @@ class SplashScreen extends Component {
             return true;
         };
 
-        Database.Add(3, v3.bind(this));
+        Database.Add(4, v4.bind(this));
 
 
         await Database.run();
