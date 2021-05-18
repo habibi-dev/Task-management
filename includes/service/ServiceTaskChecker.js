@@ -6,7 +6,7 @@ export default async (taskId) => {
 
     const time = new Date().getTime() / 1000,
         Tasks = await Select('Tasks', 'Tasks.id as id,title,description,ex_date as date ,group_id,complete,color,name as group_name',
-            `complete = 0 And notification = 0 And ex_date < ${time}`, 'ORDER BY id DESC'
+            `complete = 0 And notification = 0 And ex_date < ${time} And ex_date != 0`, 'ORDER BY id DESC'
             , 'LEFT JOIN Groups on Groups.id = group_id');
 
     Tasks.map(task => {
