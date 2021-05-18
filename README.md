@@ -2,7 +2,7 @@
 Task management application is a very simple and practical software to organize your work
 
 <h3>Download :</h3>
-<a href="https://cafebazaar.ir/app/com.habibi_dev.taskmanagement">CafeBazaar</a> | <a href="https://github.com/habibi-dev/Task-management/releases/download/1.0.1/app-release.apk">Direct link</a>
+<a href="https://cafebazaar.ir/app/com.habibi_dev.taskmanagement">CafeBazaar</a> | <a href="https://github.com/habibi-dev/Task-management/releases/download/1.1.0/app-release.apk">Direct link</a>
 
 <h3>Technologies :</h3>
 React | React Native
