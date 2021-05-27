@@ -1,8 +1,9 @@
 import {Text, TouchableOpacity, View} from 'react-native';
-import {CheckBox} from 'native-base';
+import {CheckBox, Icon} from 'native-base';
 import React from 'react';
 import {Default} from '../../../config/Stylesheet';
 import {Actions} from 'react-native-router-flux';
+import moment from 'moment-jalaali';
 
 const style = {
     item: {
@@ -24,9 +25,9 @@ const style = {
     },
     title: {
         fontFamily: Default.fontFamily,
-        fontSize: 16,
+        fontSize: 15,
         textAlign: 'right',
-        color: '#5e637f',
+        color: '#828599',
         paddingLeft: 10,
     },
     titleChecked: {
@@ -52,13 +53,51 @@ const style = {
         zIndex: 5,
         borderRadius: 20,
     },
+    informationWrap: {
+        flexDirection: 'row-reverse',
+    },
+    informationBox: {
+        flexDirection: 'row-reverse',
+        marginTop: 5,
+        marginRight: 10,
+
+    },
+    informationIcon: {
+        color: '#bbbbbb',
+        fontSize: 15,
+        width: 'auto',
+        marginTop: 2,
+
+    },
+    informationText: {
+        color: '#bbbbbb',
+        width: 'auto',
+        marginRight: 5,
+        fontFamily: Default.fontFamilyLight,
+        fontSize: 12,
+    },
 };
 
 const _onPress = (item) => {
     Actions.push('Show', {item: item});
 };
 
-export default (item, index, Checked) => {
+const information = (item) => {
+    return (
+        <View style={style.informationWrap}>
+            <View style={style.informationBox}>
+                <Icon name={'folder-o'} type={'FontAwesome'} style={style.informationIcon}/>
+                <Text style={style.informationText}>{item.group_name}</Text>
+            </View>
+            <View style={style.informationBox}>
+                <Icon name={'clock'} type={'Feather'} style={style.informationIcon}/>
+                <Text style={style.informationText}>{moment(item.date, 'X').format('HH:mm')}</Text>
+            </View>
+        </View>
+    );
+};
+
+export default (item, index, Checked, is_home = false) => {
     index = index + 1;
     const {complete, color, title} = item,
         checked = (complete === 'true' || complete === true);
@@ -73,14 +112,17 @@ export default (item, index, Checked) => {
     }
 
     return (
-        <View style={[style.item]}>
+        <View style={[style.item, is_home ? {flex: 1} : {}]} key={index}>
             {ElChecked}
             <CheckBox checked={checked} style={style.CheckBox} color={color}
                       onPress={() => Checked(index)}/>
             <TouchableOpacity style={style.titleTouchableHighlight} key={index} activeOpacity={.5}
                               underlayColor={'transparent'} onPress={() => _onPress(item)}>
-                <Text style={[style.title, checked ? style.titleChecked : {}]}
-                      numberOfLines={1} ellipsizeMode="tail">{title}</Text>
+                <View style={{flexDirection: 'column'}}>
+                    <Text style={[style.title, checked ? style.titleChecked : {}]}
+                          numberOfLines={1} ellipsizeMode="tail">{title}</Text>
+                    {is_home ? information(item) : null}
+                </View>
             </TouchableOpacity>
         </View>
     );
