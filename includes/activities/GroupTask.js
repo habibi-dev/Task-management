@@ -60,6 +60,10 @@ class GroupTask extends Component {
         }
     }
 
+    async reloadHome() {
+        await this.props.SetSetting({...this.props.setting, loading: true});
+    }
+
     GoToHome() {
         if (!this._isMounted) {
             return null;
@@ -96,6 +100,8 @@ class GroupTask extends Component {
         this.setState({Tasks});
 
         Update('Tasks', `id = ${Tasks[index].id}`, {complete: newComplete}).then();
+
+        this.reloadHome().then();
 
     }
 
