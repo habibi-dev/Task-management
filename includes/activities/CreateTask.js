@@ -119,7 +119,7 @@ class CreateTask extends Component {
     }
 
     validate() {
-        const {title, date} = this.state;
+        const {title, date, group} = this.state;
         const {message, form} = Language;
 
         if (!title.length) {
@@ -132,6 +132,11 @@ class CreateTask extends Component {
                 Notification(message.ExDate, 'danger', 3000, 'bottom');
                 return false;
             }
+        }
+
+        if (!group.id && !this.props.hasOwnProperty('group_id')) {
+            Notification(message.requiredField.replace('%s', Language.group.title), 'danger', 3000, 'bottom');
+            return false;
         }
 
         return true;
@@ -152,7 +157,12 @@ class CreateTask extends Component {
 
         if (create) {
             const res = await Insert('Tasks', {
-                title, description, ex_date: date.en, group_id: this.props.group_id, complete: 0, notification: 0,
+                title,
+                description,
+                ex_date: date.en,
+                group_id: this.props.hasOwnProperty('group_id') ? this.props.group_id : this.state.group.id,
+                complete: 0,
+                notification: 0,
             });
 
             // End Loading
@@ -267,7 +277,7 @@ class CreateTask extends Component {
                                     IconName={'calendar'} IconType={'Feather'}
                                     jump={'DatePicker'}/>
                         </View>
-                        {this.props.hasOwnProperty('item') ? (
+                        {this.props.hasOwnProperty('item') || this.props.hasOwnProperty('group_select') ? (
                             <View>
                                 <Picker placeholder={group.name.length ? group.name : Language.group.title}
                                         onChangeText={this.onChange.bind(this)}
