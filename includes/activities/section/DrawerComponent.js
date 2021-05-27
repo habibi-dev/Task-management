@@ -6,6 +6,9 @@ import {Default} from '../../config/Stylesheet';
 import Notification from './Notification';
 import {Actions} from 'react-native-router-flux';
 import {Select} from '../../functions/Sqlite';
+import Group from '../../model/Group';
+import {SetSetting} from '../../redux/actions';
+import {connect} from 'react-redux';
 
 const style = {
     Content: {
@@ -18,6 +21,7 @@ const style = {
             marginRight: 10,
             marginLeft: 10,
             textAlign: 'right',
+            flex: 1,
             color: '#ffffff',
             fontFamily: Default.fontFamilyLight,
         },
@@ -31,8 +35,15 @@ const style = {
             paddingTop: 12,
             borderRadius: 5,
             height: 50,
-            justifyContent: 'center',
+            flexDirection: 'row-reverse',
+            justifyContent: 'space-between',
+            alignItems: 'center',
             elevation: 2,
+        },
+        pin: {
+            flex: 0,
+            fontSize: 22,
+            color: '#ffffff',
         },
     },
     Footer: {
@@ -68,7 +79,7 @@ const noGroups = () => {
     );
 };
 
-export default () => {
+const DrawerComponent = (props) => {
     const background = require('../../assets/images/header-show.png');
     const [groups, setGroups] = useState([]);
     useEffect(() => {
@@ -88,6 +99,14 @@ export default () => {
                                              style={[style.Content.ImageBackground, {backgroundColor: item.color}]}
                                              source={background}>
                                 <Text style={style.Content.Text} numberOfLines={1}>{item.name}</Text>
+                                <Icon type={'AntDesign'}
+                                      onPress={() => (new Group()).pinToggle(item).then(r => props.SetSetting({
+                                              ...props.setting,
+                                              loading: true,
+                                          }),
+                                      )}
+                                      name={item.pin ? 'star' : 'staro'}
+                                      style={[style.Content.pin, item.pin ? {color: '#f1c40f'} : {}]}/>
                             </ImageBackground>
                         </TouchableOpacity>
                     )) : noGroups()}
@@ -100,4 +119,21 @@ export default () => {
             </Footer>
         </Container>
     );
-}
+};
+
+
+const StateToProps = (state) => {
+    return {
+        setting: state.setting,
+    };
+};
+
+const DispatchInProps = dispatch => {
+    return {
+        SetSetting: data => {
+            dispatch(SetSetting(data));
+        },
+    };
+};
+
+export default connect(StateToProps, DispatchInProps)(DrawerComponent);
