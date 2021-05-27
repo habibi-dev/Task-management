@@ -13,6 +13,7 @@ import DrawerComponent from './includes/activities/section/DrawerComponent';
 import CreateGroup from './includes/activities/Groups/CreateGroup';
 import ColorPicker from './includes/activities/ColorPicker';
 import GroupTask from './includes/activities/GroupTask';
+import Groups from './includes/activities/Groups';
 
 const RouterWithRedux = connect()(Router);
 
@@ -29,6 +30,7 @@ export default () => {
                                 <Scene key="Home" component={Home} animationEnabled={false}/>
                             </Stack>
                         </Drawer>
+                        <Scene key="Groups" component={Groups}/>
                         <Scene key="GroupTask" component={GroupTask}/>
                         <Scene key="Show" component={Show} />
                         <Scene key="CreateTask" component={CreateTask}/>
