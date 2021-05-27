@@ -3,6 +3,7 @@ export default {
         create: 'ایجاد کار جدید',
         edit: 'ویرایش کار  ',
         delete: 'حذف کار',
+        today: 'کار های امروز',
     },
     global: {
         name: 'مدیریت کارها',
@@ -35,6 +36,7 @@ export default {
         ExDate: 'تاریخ انتخابی باید بزرگ تر از زمان فعلی باشد.',
         Updating: 'در حال بروز رسانی',
         Expired: 'کار %1 در گروه %2 منقضی شده است.',
+        noTasksToday: 'هیچ کار زمان بندی شده ای برای امروز یافت نشد.',
     },
     datePicker: {
         title: 'انتخاب تاریخ ',
@@ -47,6 +49,7 @@ export default {
         create: 'ایجاد گروه کاری جدید',
         edit: 'ویرایش گروه کاری ',
         delete: 'حذف گروه',
+        special: 'گروه های کاری ویژه',
     },
     form: {
         title: 'عنوان',
