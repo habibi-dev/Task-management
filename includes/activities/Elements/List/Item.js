@@ -20,8 +20,8 @@ const style = {
         backgroundColor: '#ffffff',
     },
     titleTouchableHighlight: {
+        flex: 1,
         marginRight: 20,
-        width: '90%',
     },
     title: {
         fontFamily: Default.fontFamily,
