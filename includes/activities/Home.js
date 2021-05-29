@@ -240,7 +240,7 @@ class Home extends Component {
         return (
             <View style={this.style.Content.wrap} key={'task'}>
                 <Text style={this.style.Content.title}>{Language.tasks.today}</Text>
-                <View style={this.style.Content.wrapBoxGroup}>
+                <View style={[this.style.Content.wrapBoxGroup, {flexDirection: 'column'}]}>
                     {this.state.Tasks.length ?
                         this.state.Tasks.map((item, index) => Item(item, index, this.Checked.bind(this), true)) :
                         this.noTasks()
