@@ -20,7 +20,6 @@ const style = {
         backgroundColor: '#ffffff',
     },
     titleTouchableHighlight: {
-        flex: 1,
         marginRight: 20,
     },
     title: {
