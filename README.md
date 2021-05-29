@@ -17,4 +17,4 @@ Technologies: React | React Native
 
 ## Download:
 
-<a href="https://cafebazaar.ir/app/com.habibi_dev.taskmanagement">CafeBazaar</a> | <a href="https://github.com/habibi-dev/Task-management/releases/download/1.1.0/app-release.apk">Direct link</a>
+<a href="https://cafebazaar.ir/app/com.habibi_dev.taskmanagement">CafeBazaar</a> | <a href="https://github.com/habibi-dev/Task-management/releases/download/1.2.0/app-release.apk">Direct link</a>
