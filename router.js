@@ -1,4 +1,4 @@
-import {Drawer, Lightbox, Router, Scene, Stack} from 'react-native-router-flux';
+import {Drawer, Router, Scene, Stack} from 'react-native-router-flux';
 import {connect, Provider} from 'react-redux';
 import store from './includes/redux/store';
 import React from 'react';
