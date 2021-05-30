@@ -54,7 +54,7 @@ const style = {
 
 export default (props) => {
     const {item} = props,
-        date = moment(item.date, 'X').format('dddd, jDD jMMMM - HH:mm').split(' - ');
+        date = moment(item.date, 'X').format('dddd, jDD jMMMM jYYYY - HH:mm').split(' - ');
     if (!item.date) {
         return null;
     }
