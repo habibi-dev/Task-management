@@ -10,6 +10,7 @@ import HeaderBack from './section/HeaderBack';
 import {Delete, Insert, Update} from '../functions/Sqlite';
 import Notification from './section/Notification';
 import {SetSetting} from '../redux/actions';
+import moment from 'moment-jalaali';
 
 class CreateTask extends Component {
     _isMounted = false;
@@ -256,7 +257,6 @@ class CreateTask extends Component {
         const {title, description, date, group, loading} = this.state;
         const titleH = this.props.hasOwnProperty('item') ? Language.tasks.edit : Language.tasks.create;
         const ButtonText = this.props.hasOwnProperty('item') ? Language.global.save : Language.global.create;
-
         return (
             <Container>
                 <HeaderBack title={titleH} style={this.style.Header} StatusBarColor={'#f9faff'}/>
@@ -272,10 +272,12 @@ class CreateTask extends Component {
                                       value={description}/>
                         </View>
                         <View>
-                            <Picker placeholder={date.fa.length ? date.fa : Language.datePicker.title}
-                                    onChangeText={this.onChange.bind(this)}
-                                    IconName={'calendar'} IconType={'Feather'}
-                                    jump={'DatePicker'}/>
+                            <Picker
+                                placeholder={date.en !== '' ? moment(date.en, 'X').format('jYYYY/jMM/jDD HH:mm') : Language.datePicker.title}
+                                onChangeText={this.onChange.bind(this)}
+                                IconName={'calendar'} IconType={'Feather'}
+                                jump={'DatePicker'}
+                                jumpData={{selected: date.en !== '' ? moment(date.en, 'X').format('jYYYY/jMM/jDD HH:mm') : ''}}/>
                         </View>
                         {this.props.hasOwnProperty('item') || this.props.hasOwnProperty('group_select') ? (
                             <View>
