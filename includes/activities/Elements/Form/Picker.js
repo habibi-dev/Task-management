@@ -31,10 +31,10 @@ const style = {
     },
 };
 export default (props) => {
-    const {placeholder, jump, IconName, IconType, onChangeText, styleIcon = {}, setCloseBox} = props;
+    const {placeholder, jump, IconName, IconType, onChangeText, styleIcon = {}, setCloseBox, jumpData = null} = props;
 
     return (
-        <TouchableOpacity style={style.Item} onPress={() => Actions[jump]({onChangeText: onChangeText})}
+        <TouchableOpacity style={style.Item} onPress={() => Actions[jump]({onChangeText: onChangeText, ...jumpData})}
                           activeOpacity={.9}>
             <Icon name={IconName} type={IconType} style={[style.Icon, styleIcon]}/>
             <Text style={style.Input} numberOfLines={1}>{placeholder}</Text>
