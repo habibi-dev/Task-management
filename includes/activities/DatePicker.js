@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import DatePicker, {getFormatedDate} from 'react-native-modern-datepicker';
+import React, {useEffect, useState} from 'react';
 import {Default} from '../config/Stylesheet';
 import {Button, Container, Content, Footer} from 'native-base';
 import Language from '../config/Language';
@@ -7,15 +6,18 @@ import {Text, View} from 'react-native';
 import moment from 'moment-jalaali';
 import {Actions} from 'react-native-router-flux';
 import Notification from './section/Notification';
+import JalaliCalendarPicker from 'react-native-persian-jalali-calendar-picker';
 import HeaderBack from './section/HeaderBack';
 
 const style = {
     DatePicker: {
         elevation: 2,
         backgroundColor: '#fff',
-        paddingRight: 5,
         borderRadius: 5,
         margin: 5,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
         overflow: 'hidden',
     },
     Content: {
@@ -48,31 +50,42 @@ const style = {
 };
 
 export default (props) => {
-    let {onChangeText} = props;
-    const [date, setDate] = useState(), [time, setTime] = useState('00:00');
+    let {onChangeText, selected = null} = props;
+    const [date, setDate] = useState(null), [time, setTime] = useState('00:00');
+
+    useEffect(() => {
+        if (selected && date === null) {
+            const dateTime = selected.split(' ');
+            setDate(dateTime[0]);
+            setTime(dateTime[1]);
+        }
+    });
 
     return (
         <Container>
             <HeaderBack title={Language.datePicker.title}/>
             <Content style={style.Content}>
                 <View style={style.DatePicker}>
-                    <DatePicker
-                        isGregorian={false}
-                        current={getFormatedDate(new Date(), 'jYYYY/jMM/jDD')}
-                        minimumDate={getFormatedDate(new Date(), 'jYYYY/jMM/jDD')}
-                        options={{
-                            backgroundColor: '#ffffff',
-                            textHeaderColor: '#666666',
-                            textDefaultColor: '#363636',
-                            selectedTextColor: '#fff',
-                            mainColor: '#1f79ff',
-                            textSecondaryColor: '#666666',
-                            defaultFont: Default.fontFamilyLight,
-                            headerFont: Default.fontFamily,
+                    <JalaliCalendarPicker
+                        styleWrap={{}}
+                        headerStyleWrap={{}}
+                        headerStyleText={{}}
+                        headerStyleTextCenter={{}}
+                        headerStyleWrapCenter={{}}
+                        weekStyleWrap={{}}
+                        weekStyleText={{}}
+                        maxY={1455}
+                        minY={1400}
+                        Time={true}
+                        primaryColor={'#2980b9'}
+                        selected={date}
+                        currentTime={time}
+                        min={moment().format('jYYYY/jMM/jDD')}
+                        onDateChange={date => {
+                            const dateTime = date.split(' ');
+                            setDate(dateTime[0]);
+                            setTime(dateTime[1]);
                         }}
-                        dateFormat={'YYYY/MM/DD'}
-                        onDateChange={setDate}
-                        onTimeChange={setTime}
                     />
                 </View>
 
