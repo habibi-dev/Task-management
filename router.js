@@ -1,4 +1,4 @@
-import {Drawer, Router, Scene, Stack} from 'react-native-router-flux';
+import {Drawer, Lightbox, Router, Scene, Stack} from 'react-native-router-flux';
 import {connect, Provider} from 'react-redux';
 import store from './includes/redux/store';
 import React from 'react';
@@ -31,11 +31,11 @@ export default () => {
                             </Stack>
                         </Drawer>
                         <Scene key="Groups" component={Groups}/>
-                        <Scene key="GroupTask" component={GroupTask}/>
-                        <Scene key="Show" component={Show} />
-                        <Scene key="CreateTask" component={CreateTask}/>
+                        <Scene key="Show" component={Show}/>
                         <Scene key="CreateGroup" component={CreateGroup}/>
                         <Scene key="ColorPicker" component={ColorPicker}/>
+                        <Scene key="GroupTask" component={GroupTask}/>
+                        <Scene key="CreateTask" component={CreateTask}/>
                         <Scene key="GroupPicker" component={GroupPicker}/>
                         <Scene key="DatePicker" component={DatePicker}/>
                     </Scene>
