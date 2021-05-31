@@ -8,6 +8,7 @@ import {Actions} from 'react-native-router-flux';
 import Notification from './section/Notification';
 import JalaliCalendarPicker from 'react-native-persian-jalali-calendar-picker';
 import HeaderBack from './section/HeaderBack';
+import LightBox from './LightBox';
 
 const style = {
     DatePicker: {
@@ -62,34 +63,29 @@ export default (props) => {
     });
 
     return (
-        <Container>
-            <HeaderBack title={Language.datePicker.title}/>
-            <Content style={style.Content}>
-                <View style={style.DatePicker}>
-                    <JalaliCalendarPicker
-                        styleWrap={{}}
-                        headerStyleWrap={{}}
-                        headerStyleText={{}}
-                        headerStyleTextCenter={{}}
-                        headerStyleWrapCenter={{}}
-                        weekStyleWrap={{}}
-                        weekStyleText={{}}
-                        maxY={1455}
-                        minY={1400}
-                        Time={true}
-                        primaryColor={'#2980b9'}
-                        selected={date}
-                        currentTime={time}
-                        min={moment().format('jYYYY/jMM/jDD')}
-                        onDateChange={date => {
-                            const dateTime = date.split(' ');
-                            setDate(dateTime[0]);
-                            setTime(dateTime[1]);
-                        }}
-                    />
-                </View>
+        <LightBox>
+            <JalaliCalendarPicker
+                styleWrap={{}}
+                headerStyleWrap={{}}
+                headerStyleText={{}}
+                headerStyleTextCenter={{}}
+                headerStyleWrapCenter={{}}
+                weekStyleWrap={{}}
+                weekStyleText={{}}
+                maxY={1455}
+                minY={1400}
+                Time={true}
+                primaryColor={'#2980b9'}
+                selected={date}
+                currentTime={time}
+                min={moment().format('jYYYY/jMM/jDD')}
+                onDateChange={date => {
+                    const dateTime = date.split(' ');
+                    setDate(dateTime[0]);
+                    setTime(dateTime[1]);
+                }}
+            />
 
-            </Content>
             <Footer style={style.Footer.main}>
                 <Button style={style.Footer.btn} onPress={() => {
                     if (!date) {
@@ -105,7 +101,7 @@ export default (props) => {
                     <Text style={style.Footer.text}>{Language.datePicker.title}</Text>
                 </Button>
             </Footer>
-        </Container>
+        </LightBox>
 
     );
 }
