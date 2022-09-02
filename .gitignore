@@ -1,2 +1,5 @@
 key.keystore
 google-services.json
+.idea/
+.gradle
+app/release
