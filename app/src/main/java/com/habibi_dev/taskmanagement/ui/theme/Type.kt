@@ -11,20 +11,21 @@ import com.habibi_dev.taskmanagement.R
 // Set of Material typography styles to start with
 val Typography = Typography(
     body1 = TextStyle(
-        fontFamily = FontFamily(Font(R.font.shabnam_light)),
+        fontFamily = FontFamily(
+            Font(
+                R.font.vazirmatn_regular,
+                FontWeight.Normal
+            ),
+            Font(
+                R.font.vazirmatn_bold,
+                FontWeight.Bold
+            ),
+            Font(
+                R.font.vazirmatn_light,
+                FontWeight.Light
+            )
+        ),
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     )
-    /* Other default text styles to override
-    button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
-    ),
-    caption = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
-    )
-    */
 )
