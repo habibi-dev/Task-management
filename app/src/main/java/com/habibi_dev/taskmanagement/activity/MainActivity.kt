@@ -11,15 +11,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.core.view.WindowInsetsControllerCompat
-import com.habibi_dev.taskmanagement.navigation.Navigation
+import com.habibi_dev.taskmanagement.routes.Navigation
 import com.habibi_dev.taskmanagement.ui.theme.TaskManagementTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // color light NavigationBar
-        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightNavigationBars =
-            true
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightNavigationBars = true
+
         setContent {
             TaskManagementTheme {
                 CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
