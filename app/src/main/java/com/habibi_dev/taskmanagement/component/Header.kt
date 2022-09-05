@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -12,16 +13,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.habibi_dev.taskmanagement.R
+import kotlinx.coroutines.launch
 
 @Composable
-fun Header(title: String = "") {
+fun Header(title: String = "", state: ScaffoldState) {
     TopAppBar(
         backgroundColor = Color.Transparent,
         elevation = 0.dp,
         modifier = Modifier.fillMaxWidth(),
     ) {
         Row(modifier = Modifier.fillMaxWidth(), Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-            Right()
+            Right(state)
             Title(title)
             Left()
         }
@@ -39,8 +41,10 @@ private fun Left() {
 }
 
 @Composable
-private fun Right() {
-    IconButton(onClick = { }, enabled = true) {
+private fun Right(state: ScaffoldState) {
+    val scope = rememberCoroutineScope()
+
+    IconButton(onClick = { scope.launch { state.drawerState.open() } }, enabled = true) {
         Icon(
             painter = painterResource(R.drawable.ic_menu),
             contentDescription = ""
