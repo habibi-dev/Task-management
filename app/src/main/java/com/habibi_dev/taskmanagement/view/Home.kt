@@ -17,10 +17,7 @@ fun Home() {
         scaffoldState = scaffoldState,
         topBar = { Header() },
     ) {
-        Column(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-        ) {
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
 
         }
     }
