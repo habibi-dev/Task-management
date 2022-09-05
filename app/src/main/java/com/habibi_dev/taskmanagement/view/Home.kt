@@ -6,6 +6,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import com.habibi_dev.taskmanagement.component.Drawer
 import com.habibi_dev.taskmanagement.component.Header
 
 
@@ -15,7 +17,9 @@ fun Home() {
 
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = { Header() },
+        topBar = { Header(state = scaffoldState) },
+        drawerContent = { Drawer() },
+        drawerBackgroundColor = Color(0xffffffff)
     ) {
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
 
